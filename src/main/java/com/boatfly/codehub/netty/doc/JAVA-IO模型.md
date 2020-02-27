@@ -39,7 +39,25 @@ Java共支持三种网络编程I/O模式
 - 选择器 Selector
   - 用于监听多个通道的事件（如：连接请求、数据到达等），因此使用单个线程可以监听多个客户端通道。
   - 会根据不同的`事件`在多个通道上进行切换。
+  - Netty的IO线程NioEventLoop聚合了Selector（选择器 or 多路复用器）
+  - method
+    - open
+    - select
+      - select()阻塞
+      - select(1000)阻塞1000毫秒，在1000毫秒后返回
+      - wakeup() 唤醒selector
+      - selectNow() 不阻塞，马上返回
+    - selectedKey
+      - 可以反向获取channel
 
+### NIO非阻塞网络编程原理分析
+- 当客户端连接时，会通过ServerSockerChannel得到SocketChannel。
+- 将socketChannel注册到selector上，register(Selector sel,int ops)，一个selector可以注册多个socketChannel
+- 注册后返回一个SelectorKey，会和该selector进行关联（集合）。
+- Selector进行监听，select方法，返回有事件发生的通道个数
+- 进一步得到各个selectorkey（有事件发生）
+- 通过selectorkey反向获取socketchannel，方法channel()
+- 可以通过得到的channel，完成业务处理。
 
 
 
