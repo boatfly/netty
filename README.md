@@ -6,7 +6,7 @@
 - 主要针对在TCPx协议下，面向clientd端的高并发应用，或者peer-to-peer场景下的大量数据持久传输的y应用。
 
 `TCP/IP -> JDK原生IO -> NIO -> Netty`
-### I/模型
+### I/O模型
 Java共支持三种网络编程I/O模式
 - BIO
   - 同步并阻塞
@@ -16,3 +16,6 @@ Java共支持三种网络编程I/O模式
     - [java-NIO](images/nio.png)
 - AIO
   - 异步非阻塞
+  
+## code
+更多笔记，包含在com.boatfly.codehub.netty.doc目录下。
