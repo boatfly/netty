@@ -1,4 +1,4 @@
-package com.boatfly.codehub.netty.doc.examples.nio.simple;
+package com.boatfly.codehub.netty.examples.nio.simple;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
