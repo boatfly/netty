@@ -49,6 +49,14 @@ Java共支持三种网络编程I/O模式
       - selectNow() 不阻塞，马上返回
     - selectedKey
       - 可以反向获取channel
+      - OP_READ = 1 << 0
+        - 0000 0001 -> 0
+      - OP_WRITE = 1 << 2
+        - 0000 0100  -> 4
+      - OP_CONNECT = 1 << 3
+        - 0000 1000  ->8
+      - OP_ACCEPT = 1 << 4
+        - 0001 0000 -> 16
 
 ### NIO非阻塞网络编程原理分析
 - 当客户端连接时，会通过ServerSockerChannel得到SocketChannel。
