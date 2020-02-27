@@ -18,4 +18,4 @@ Java共支持三种网络编程I/O模式
   - 异步非阻塞
   
 ## code
-更多笔记，包含在com.boatfly.codehub.netty.doc目录下。
+更多笔记，包含在doc目录下。
