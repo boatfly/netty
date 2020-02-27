@@ -6,7 +6,7 @@ Java共支持三种网络编程I/O模式
 - NIO
   - 同步非阻塞
     - 多路复用选择器 Selector
-    - ![java-NIO](./nio/nio.png)
+    - ![java-NIO](nio/nio.png)
 - AIO
   - 异步非阻塞
   
