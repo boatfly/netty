@@ -35,7 +35,7 @@ public class GroupChatServer {
         try {
             //循环处理
             while (true) {
-                if (selector.select(2000) > 0) { //有事件处理
+                if (selector.select() > 0) { //有事件处理
                     //遍历得到的selectionkey集合
                     Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
                     while (iterator.hasNext()) {
@@ -106,10 +106,10 @@ public class GroupChatServer {
         //遍历所有注册到selector上的socketchannel，并排除自己
         for (SelectionKey key : selector.keys()) {
             //获取channle
-            Channel targetCchannel = key.channel();
+            Channel targetChannel = key.channel();
             //排除自己
-            if (targetCchannel instanceof SocketChannel && targetCchannel != self) {
-                SocketChannel socketChannel = (SocketChannel)targetCchannel;
+            if (targetChannel instanceof SocketChannel && targetChannel != self) {
+                SocketChannel socketChannel = (SocketChannel)targetChannel;
                 //将msg存储到buffer
                 ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes());
                 //将buffer数据写入通道
@@ -119,6 +119,8 @@ public class GroupChatServer {
     }
 
     public static void main(String[] args) {
-
+        //创建服务器对象
+        GroupChatServer groupChatServer = new GroupChatServer();
+        groupChatServer.lisen();
     }
 }
