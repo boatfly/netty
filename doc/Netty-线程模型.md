@@ -47,3 +47,7 @@ client - > Reactor（主） -> Acceptor -> accept()
                                     -> send()
 
 ```
+![Using multiple Reactors](doc/reactor/multi-reactor-mode.png)
+form 《scalable IO in Java》 author：Doug Lea
+
+
