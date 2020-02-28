@@ -1,4 +1,4 @@
-package com.boatfly.codehub.netty.examples.netty.simple;
+package com.boatfly.codehub.netty.examples.netty.refactor.taskqueue;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,11 +8,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.channels.ServerSocketChannel;
 
 public class NettyServer {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -33,6 +30,7 @@ public class NettyServer {
                         //给pipeline设置处理器
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
+                            //在此处可以将socketChannel加入一个集合中进行统一管理，之后可以根据特定表示进行召回 @TODO
                             socketChannel.pipeline().addLast(new NettyServerHandler());
                         }
                     });//为workgroup的eventloop对应的管道设置处理器
