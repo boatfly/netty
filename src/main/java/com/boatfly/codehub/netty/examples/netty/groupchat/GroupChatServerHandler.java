@@ -7,15 +7,19 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> {
     //定义一个channle组，管理所有的channle
     //GlobalEventExecutor 全局事件执行器，单例
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    //私聊 建立client到channel的映射，在发送私聊信息时，通过client的标识获取对应的channel，进行信息发送
+    private static Map<String,Channel> client2channelmap = new ConcurrentHashMap<>();
 
     /**
      * 表示连接建立，一旦连接，第一个被执行
