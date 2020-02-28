@@ -1,4 +1,4 @@
-package com.boatfly.codehub.netty.examples.netty.refactor.taskqueue;
+package com.boatfly.codehub.netty.examples.netty.simple.refactor.taskqueue;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
