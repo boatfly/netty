@@ -7,8 +7,10 @@ Java共支持三种网络编程I/O模式
   - 同步非阻塞
     - 多路复用选择器 Selector
     - ![java-NIO](nio/nio.png)
+    - Reactor模式
 - AIO
   - 异步非阻塞
+  - Proactor模式
   
 ## BIO (blocking IO)
 ### 编程模型：
@@ -67,7 +69,18 @@ Java共支持三种网络编程I/O模式
 - 通过selectorkey反向获取socketchannel，方法channel()
 - 可以通过得到的channel，完成业务处理。
 
-
+### 原生NIO存在的问题
+- NIO的类库 和API 繁杂。
+- 需要对多线程和网络编程，reactor模式，非常熟悉才能写出高质量的代码
+- 开发工作量和难度大：
+  - 断连重连
+  - 网络闪断
+  - 半包读写
+  - 失败缓存
+  - 网络拥塞
+  - 异常流等
+- Bug：
+  - Epoll Bug；
 
 
 
