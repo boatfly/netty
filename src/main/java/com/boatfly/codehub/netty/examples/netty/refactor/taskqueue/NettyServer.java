@@ -1,10 +1,7 @@
 package com.boatfly.codehub.netty.examples.netty.refactor.taskqueue;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -39,6 +36,18 @@ public class NettyServer {
 
             //绑定一个端口，并且同步，
             ChannelFuture future = serverBootstrap.bind(9997).sync();
+
+            //注册监听器
+            future.addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture future) throws Exception {
+                    if(future.isSuccess()){
+                        System.out.println("bind port 9997 success!");
+                    }else{
+                        System.out.println("bind port 9997 failed!");
+                    }
+                }
+            });
 
             //对关闭通道进行监听
             future.channel().closeFuture().sync();
