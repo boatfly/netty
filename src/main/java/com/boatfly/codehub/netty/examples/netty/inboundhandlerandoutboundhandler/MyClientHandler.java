@@ -8,11 +8,12 @@ import io.netty.util.CharsetUtil;
 public class MyClientHandler extends SimpleChannelInboundHandler<Long> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Long msg) throws Exception {
-
+        System.out.println("收到服务器端返回的信息:" + msg);
     }
 
     /**
      * 发送数据
+     *
      * @param ctx
      * @throws Exception
      */

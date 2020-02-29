@@ -40,6 +40,21 @@
   --java_out：编译成 java 文件时，标明输出目标路径
   ./Student.proto：指定需要编译的 .proto 文件
 ```
+## 其他的解码器
+
+### ReplayingDecoder
+
+### LineBasedFrameDecoder
+- 它使用行尾控制字符(\n或者\r\n)作为分隔符来解析数据
+
+### DelimiterBasedFrameDecoder
+- 它使用自定义的特殊字符作为消息的分割符
+
+### HttpObjectDecoder
+- 一个HTTP数据的解码器
+
+### LengthFieldBasedFrameDecoder
+- 通过制定长度来标识整包信息，这样就可以自动的处理粘包和半包信息。
 
 
 
