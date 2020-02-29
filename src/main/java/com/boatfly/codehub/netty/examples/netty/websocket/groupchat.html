@@ -1,0 +1,50 @@
+<!DOCTYPTE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>textFrame</title>
+</head>
+<body>
+<script>
+    var socket;
+    if (window.WebSocket) {
+        socket = new WebSocket("ws://localhost:8881/groupchat");
+        //相当于channelRead0 ev 服务器端会送的消息
+        socket.onmessage = function (ev) {
+            var responseText = document.getElementById("responseText");
+            responseText.value = responseText.value + "\n" + ev.data;
+        }
+        //相当于连接开启
+        socket.onopen = function (ev) {
+            var responseText = document.getElementById("responseText");
+            responseText.value = '连接开启...';
+        }
+        //感知到连接关闭
+        socket.onclose = function (ev) {
+            var responseText = document.getElementById("responseText");
+            responseText.value = responseText.value + "\n连接关闭...";
+        }
+    } else {
+        alert("您的浏览器不支持websocket!");
+    }
+
+    function send(message) {
+        if (!window.socket) {// 判断socket是否创建好
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            socket.send(message);
+        } else {
+            alert("连接没有开启...");
+        }
+    }
+</script>
+<form onsubmit="false"><!--屏蔽自动提交-->
+    <textarea id="message" style="height: 300px;width: 300px;"></textarea>
+    <input type="button" value="发送信息" onclick="send(this.form.message.value)"/>
+    <textarea id="responseText" style="height: 300px;width: 300px;"></textarea>
+    <input type="button" value="清空消息" onclick="document.getElementById('responseText').value=''"/>
+</form>
+
+</body>
+</html>
