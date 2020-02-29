@@ -19,12 +19,10 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("server ctx:" + ctx);
-        // 将msg转成ByteBuf
-        ByteBuf buf = (ByteBuf) msg;
-
-        System.out.println("client sengd msg：" + buf.toString(CharsetUtil.UTF_8));
-        System.out.println("client address is:" + ctx.channel().remoteAddress());
+        //读取从客户端发送的StudentPOJO.Student对象
+        StudentPOJO.Student student = (StudentPOJO.Student) msg;
+        System.out.println("客户端发送的数据,id=" + student.getId());
+        System.out.println("客户端发送的数据,name=" + student.getName());
     }
 
     /**
