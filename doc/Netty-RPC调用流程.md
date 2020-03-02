@@ -9,3 +9,5 @@
 
 ![rpc调用流程](rpc/rpc.png)
 
+## Netty简单实现 Dubbo RPC
+- code 见 com.boatfly.codehub.netty.examples.netty.dubborpc
